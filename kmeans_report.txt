@@ -1,23 +1,40 @@
-KMEANS CLUSTERING – REPORT
+K-MEANS CLUSTERING PROJECT REPORT
 
-Dataset:
-- Number of samples: 300
-- Number of features: 2
-- Data generation method: make_blobs
-- Number of clusters (k): 3
+1. Dataset Information
+The dataset was generated using the make_blobs function.
+Total samples: 300
+Number of features: 2
+Cluster standard deviation: 1.2
 
-Models Used:
-1. Custom KMeans implementation (from scratch using NumPy)
-2. Scikit-learn KMeans implementation
+2. Objective
+The objective of this project is to implement the K-Means clustering algorithm
+from scratch using NumPy and determine the optimal number of clusters using the
+Elbow Method.
 
-Results:
-- Custom KMeans WCSS : 816.2777536191549
-- Sklearn KMeans WCSS: 816.2777536191552
+3. Elbow Method Results
+The algorithm was executed for K values from 1 to 10.
+The SSE (WCSS) values obtained are:
 
-Observation:
-The Within-Cluster Sum of Squares (WCSS) values obtained from both the custom
-implementation and the sklearn implementation are almost identical.
+K = 1  -> 20729.81
+K = 2  -> 6045.98
+K = 3  -> 816.28
+K = 4  -> 720.05
+K = 5  -> 657.31
+K = 6  -> 563.42
+K = 7  -> 557.16
+K = 8  -> 483.57
+K = 9  -> 452.42
+K = 10 -> 353.21
 
-Conclusion:
-The custom KMeans algorithm is working correctly and produces results that are
-numerically consistent with the industry-standard sklearn KMeans algorithm.
+4. Optimal K Selection
+A sharp decrease in SSE is observed from K = 1 to K = 3.
+Beyond K = 3, the reduction in SSE becomes gradual.
+Therefore, K = 3 is selected as the optimal number of clusters.
+
+5. Final Result
+Final WCSS for K = 3: 816.2777536191549
+
+6. Conclusion
+The Elbow Method confirms that three clusters best represent the dataset.
+The custom K-Means implementation successfully clusters the data and produces
+a meaningful and well-separated cluster structure.
