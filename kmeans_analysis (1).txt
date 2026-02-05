@@ -1,0 +1,39 @@
+K-MEANS CLUSTERING PROJECT ANALYSIS
+
+1. Data Generation Analysis
+The dataset consists of 300 two-dimensional points generated around three
+distinct centers. The distribution ensures natural cluster formation,
+making it suitable for evaluating the K-Means algorithm.
+
+2. Algorithm Workflow
+The custom K-Means algorithm follows these steps:
+- Random selection of initial centroids from the dataset
+- Distance computation using Euclidean distance
+- Assignment of data points to the nearest centroid
+- Centroid recalculation using the mean of assigned points
+- Iterative refinement until convergence using a tolerance threshold
+
+3. SSE and Elbow Method Interpretation
+SSE measures cluster compactness. A significant drop in SSE is observed up to
+K = 3, indicating improved clustering. After K = 3, the decrease in SSE is
+comparatively small, suggesting diminishing returns.
+
+4. Justification for K = 3
+The dataset was synthetically generated with three centers. The Elbow Method
+numerically supports this by showing a clear elbow at K = 3, validating the
+selection of the optimal number of clusters.
+
+5. Final Cluster Interpretation
+With K = 3, the clusters are compact and well separated. Each cluster
+represents one underlying data-generating center, confirming the correctness
+of the clustering process.
+
+6. Limitations
+- The algorithm is sensitive to initial centroid selection.
+- Different initializations may lead to slightly different SSE values.
+- Only Euclidean distance is supported.
+
+7. Final Insight
+This analysis confirms that the custom NumPy-based K-Means implementation
+correctly identifies the underlying cluster structure and successfully
+applies the Elbow Method to justify the optimal K.
