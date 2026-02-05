@@ -1,0 +1,37 @@
+K-MEANS CLUSTERING PROJECT – REPORT
+
+1. Dataset Description
+The dataset was generated using the make_blobs function from sklearn.datasets.
+It contains 300 data points with 2 numerical features. The data was generated
+around three natural centers with a cluster standard deviation of 1.2.
+
+2. Objective
+The objective of this project is to implement the K-Means clustering algorithm
+from scratch using NumPy and validate its correctness by comparing the results
+with the sklearn KMeans implementation. Additionally, the Elbow Method is used
+to determine the optimal number of clusters (K).
+
+3. Method Used
+A custom K-Means algorithm was implemented using NumPy for all core operations.
+The algorithm follows the standard K-Means steps:
+- Random initialization of centroids
+- Distance computation using Euclidean distance
+- Cluster assignment
+- Centroid update using the mean of assigned points
+- Convergence checking using centroid tolerance
+
+4. Elbow Method
+The Elbow Method was applied by running the custom K-Means algorithm for
+K values ranging from 1 to 10. For each K, the Within-Cluster Sum of Squares
+(WCSS) was calculated. The resulting SSE curve showed a clear elbow at K = 3,
+indicating that 3 is the optimal number of clusters.
+
+5. Final Result
+- Selected K value: 3
+- Custom KMeans WCSS: 816.2777536191549
+- Sklearn KMeans WCSS: 816.2777536191552
+
+6. Conclusion
+The custom K-Means implementation is correct and produces results consistent
+with sklearn’s KMeans algorithm. The Elbow Method further justifies the
+selection of K = 3 as the optimal number of clusters.
