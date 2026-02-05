@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs
-from sklearn.cluster import KMeans
 
 np.random.seed(42)
 
@@ -15,19 +14,16 @@ X, _ = make_blobs(
 print("Dataset Shape:", X.shape)
 
 class MyKMeans:
-
     def __init__(self, k=3, max_iters=100, tol=1e-4):
         self.k = k
         self.max_iters = max_iters
         self.tol = tol
 
     def fit(self, X):
-
         idx = np.random.choice(len(X), self.k, replace=False)
         centroids = X[idx]
 
         for _ in range(self.max_iters):
-
             distances = np.sqrt(((X[:, None] - centroids) ** 2).sum(axis=2))
             labels = np.argmin(distances, axis=1)
 
@@ -47,32 +43,40 @@ class MyKMeans:
             for i in range(self.k)
         )
 
-k = 3
+sse = []
+K_range = range(1, 11)
 
-custom_model = MyKMeans(k)
-custom_model.fit(X)
+for k in K_range:
+    model = MyKMeans(k=k)
+    model.fit(X)
+    sse.append(model.wcss_)
 
-custom_labels = custom_model.labels_
-custom_centroids = custom_model.centroids
-custom_wcss = custom_model.wcss_
+print("\nElbow Method SSE Values:")
+for k, val in zip(K_range, sse):
+    print(f"K = {k} -> SSE = {val:.2f}")
 
-sk_model = KMeans(n_clusters=k, random_state=42, n_init=10)
-sk_model.fit(X)
-
-print("\nCustom WCSS :", custom_wcss)
-print("Sklearn WCSS:", sk_model.inertia_)
-
-plt.figure(figsize=(12, 5))
-
-plt.subplot(1, 2, 1)
-plt.scatter(X[:, 0], X[:, 1], c=custom_labels)
-plt.scatter(custom_centroids[:, 0], custom_centroids[:, 1], marker='X', s=200)
-plt.title("Custom KMeans")
-
-plt.subplot(1, 2, 2)
-plt.scatter(X[:, 0], X[:, 1], c=sk_model.labels_)
-plt.scatter(sk_model.cluster_centers_[:, 0], sk_model.cluster_centers_[:, 1], marker='X', s=200)
-plt.title("Sklearn KMeans")
-
-plt.tight_layout()
+plt.figure()
+plt.plot(K_range, sse, marker='o')
+plt.xlabel("Number of Clusters (K)")
+plt.ylabel("SSE / WCSS")
+plt.title("Elbow Method for Optimal K")
 plt.show()
+
+optimal_k = 3
+final_model = MyKMeans(k=optimal_k)
+final_model.fit(X)
+
+plt.figure()
+plt.scatter(X[:, 0], X[:, 1], c=final_model.labels_)
+plt.scatter(
+    final_model.centroids[:, 0],
+    final_model.centroids[:, 1],
+    marker='X',
+    s=200
+)
+plt.title("Final Clusters using Optimal K = 3")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.show()
+
+print("\nFinal WCSS for K = 3:", final_model.wcss_)
