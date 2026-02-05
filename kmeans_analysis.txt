@@ -1,0 +1,31 @@
+KMEANS CLUSTERING – ANALYSIS
+
+1. Objective:
+The goal of this experiment is to validate a custom implementation of the
+KMeans clustering algorithm by comparing it with the sklearn KMeans model.
+
+2. Methodology:
+- Randomly initialize k centroids from the dataset.
+- Assign each data point to the nearest centroid using Euclidean distance.
+- Recalculate centroids as the mean of assigned points.
+- Repeat until centroids converge or maximum iterations are reached.
+
+3. WCSS Comparison:
+WCSS measures the compactness of clusters. Lower WCSS indicates better clustering.
+The observed WCSS values from both implementations differ only at the 13th decimal
+place, which is due to floating-point precision.
+
+4. Interpretation:
+The near-identical WCSS values confirm:
+- Correct distance calculation
+- Proper centroid updates
+- Successful convergence of the custom algorithm
+
+5. Limitations:
+- Results may vary with different random initializations.
+- Only Euclidean distance is supported.
+- The algorithm may converge to a local minimum.
+
+6. Final Insight:
+This experiment successfully demonstrates that a custom KMeans implementation
+can closely replicate sklearn’s results when implemented correctly.

@@ -1,0 +1,23 @@
+KMEANS CLUSTERING – REPORT
+
+Dataset:
+- Number of samples: 300
+- Number of features: 2
+- Data generation method: make_blobs
+- Number of clusters (k): 3
+
+Models Used:
+1. Custom KMeans implementation (from scratch using NumPy)
+2. Scikit-learn KMeans implementation
+
+Results:
+- Custom KMeans WCSS : 816.2777536191549
+- Sklearn KMeans WCSS: 816.2777536191552
+
+Observation:
+The Within-Cluster Sum of Squares (WCSS) values obtained from both the custom
+implementation and the sklearn implementation are almost identical.
+
+Conclusion:
+The custom KMeans algorithm is working correctly and produces results that are
+numerically consistent with the industry-standard sklearn KMeans algorithm.
